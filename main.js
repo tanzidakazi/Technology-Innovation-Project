@@ -2,6 +2,7 @@ const { app, BrowserWindow } = require('electron');
 
 function createWindow() {
     const win = new BrowserWindow({
+        title: 'Technology Innovation Project',
         width: 800,
         height: 600,
         webPreferences: {
@@ -25,3 +26,4 @@ app.on('activate', () => {
         createWindow();
     }
 });
+

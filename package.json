@@ -2,8 +2,11 @@
   "devDependencies": {
     "electron": "^27.0.0"
   },
-
   "scripts": {
     "start": "electron main.js"
+  },
+  "dependencies": {
+    "echarts": "^5.4.3",
+    "flowbite": "^1.8.1"
   }
 }
