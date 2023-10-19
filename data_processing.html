@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css">
+    <style>
+        /* Add your custom CSS here */
+        /* Style the container to spread the entire page */
+        .container {
+            width: 100%; /* Set the width to 100% */
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* Style the output area and make it bigger */
+        #output {
+            display: none; /* Initially hide the output area */
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 20px; /* Increased padding for a bigger output area */
+            white-space: pre-wrap;
+        }
+
+        /* Style the "Import" button to make it more prominent */
+        #importButton {
+            background-color: #007BFF; /* Blue color */
+            color: white;
+            padding: 10px 20px; /* Increased padding for a larger button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Processing</h1>
+        <label for="fileInput">Select a file:</label>
+        <input type="file" id="fileInput" accept=".txt,.csv">
+        <label for="fileType">Select file type:</label>
+        <select id="fileType">
+            <option value="text">Text File</option>
+            <option value="csv">CSV File</option>
+        </select>
+        <button id="importButton">Import</button>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // Function to handle file selection and display content
+        document.getElementById('importButton').addEventListener('click', function() {
+            const selectedFileType = document.getElementById('fileType').value;
+            const fileInput = document.getElementById('fileInput');
+            const outputArea = document.getElementById('output');
+
+            fileInput.addEventListener('change', function() {
+                const file = fileInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+
+                    reader.onload = function(e) {
+                        const fileContent = e.target.result;
+                        outputArea.textContent = fileContent;
+
+                        // Display the output area when content is available
+                        outputArea.style.display = 'block';
+                    };
+
+                    if (selectedFileType === 'text') {
+                        reader.readAsText(file);
+                    } else if (selectedFileType === 'csv') {
+                        reader.readAsText(file);
+                        // You can implement CSV parsing here
+                    }
+                }
+            });
+
+            // Trigger the file input
+            fileInput.click();
+        });
+    </script>
+</body>
+</html>
